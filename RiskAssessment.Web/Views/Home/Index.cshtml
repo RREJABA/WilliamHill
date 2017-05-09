@@ -1,0 +1,37 @@
+﻿@model  IEnumerable<RiskAssessment.Web.Models.CustomerViewModel>
+<div class="row">
+    <div class="col-lg-12">
+        <label>RISK ASSESSMENT</label>
+        <br><br>
+        <label>Remarks 1 : This customer has won more than 60% of his total bets</label><br>
+        <label>Remarks 2 : This customer's current Stake is 10 times higher than his average bets</label><br>
+        <label>Remarks 3 : This customer's current Stake is 30 times higher than his average bets</label><br>
+        <label>Remarks 4 : This customer's current amount To Win is equal or above to the risk amount of 1,000</label><br>
+    </div>
+</div>
+<hr>
+<div class="row">
+    <div class="col-lg-9">
+        <table class="table">            
+            @Html.Raw("<thead><th>Customer</th><th>Event</th><th>Participant</th><th>Stake</th><th>To Win</th><th>Remarks 1</th><th>Remarks 2</th><th>Remarks 3</th><th>Remarks 4</th></thead><tbody>")
+            @if (@Model != null)
+            {
+                foreach (var elem in @Model as IEnumerable<RiskAssessment.Web.Models.CustomerViewModel>)
+                {
+                    @Html.Raw("<tr ><td>" 
+                   + @elem.Customer + "</td><td>" 
+                   + @elem.Event + "</td><td>" 
+                   + @elem.Participant + "</td><td>" 
+                   + @elem.Stake + "</td><td>" 
+                   + @elem.Win + "</td><td>" 
+                   + @elem.IsUnusualRateWinner + "</td><td>" 
+                   + @elem.IsCurrentStakeTenTimesHigherThanAverage + "</td><td>" 
+                   + @elem.IsCurrentStakeThirtyTimesHigherThanAverage + "</td><td>" 
+                   + @elem.IsCurrentWinningOnRiskAmount + "</td></tr>");
+                 }
+                @Html.Raw("</tbody>");
+            }
+        </table> 
+    </div>
+    <div class="col-sm-8"></div>
+</div>
